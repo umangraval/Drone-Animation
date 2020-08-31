@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>18BCE0170</title>
+  </head>
+  <body >
+    <div id="overlay" onclick="off()">
+      <div id="text">Click to Resume</div>
+        <div class="controls">
+          Land/Takeoff <br>
+          Stunt <br>
+          Pause/Resume <br>
+          Up/Down
+        </div>
+        <div class="keys">
+          SPACEBAR <br>
+          KEY S <br>
+          CLICK <br>
+          ArrowUp/ArrowDown
+        </div>
+      </div>
+      
+    </div>
+    <div class="day" id="day" onclick="on()">
+      <div class="plain" id="plain"></div>
+      <div class="car" id="demo">
+        <img
+          src="assets/drone_PNG201.png"
+          alt=""
+          height="150px"
+          width="250px"
+        />
+      </div>
+    </div>
+    <script>
+      var flag = 0;
+      var game = 1;
+      function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+      function on() {
+        document.getElementById("overlay").style.display = "block";
+        gameover();
+      }
+
+      function off() {
+        document.getElementById("overlay").style.display = "none";
+        console.log(document.getElementById("overlay").style.display)
+        gameover();
+      }
+      function down() {
+        var element = document.getElementById("demo"),
+          style = window.getComputedStyle(element),
+          top = style.getPropertyValue("top");
+        new_top = parseInt(top) + 60 + "px";
+        element.style.top = new_top;
+      }
+
+      function up() {
+        var element = document.getElementById("demo"),
+          style = window.getComputedStyle(element),
+          top = style.getPropertyValue("top");
+        new_top = parseInt(top) - 70 + "px";
+        element.style.top = new_top;
+      }
+
+      async function stunt() {
+        var drone = document.getElementById("demo");
+        drone.style.animation = "stunt 3s";
+        drone.style.animationFillMode = "forwards";
+        await sleep(3000);
+        drone.style.animation = "suspension 1s linear infinite";
+      }
+      async function gameover() {
+        var element = document.getElementById("plain"),
+          style = window.getComputedStyle(element),
+          animate = style.getPropertyValue("animation-play-state");
+        whichani = style.getPropertyValue("animation");
+        console.log(whichani);
+        var drone = document.getElementById("demo");
+        if (flag == 0) {
+          element.style.animationPlayState = "paused";
+          drone.style.animation =
+            "suspension 1s linear infinite, land 3s linear";
+          drone.style.animationFillMode = "forwards";
+          flag = 1;
+        } else {
+          drone.style.animation = "takeoff 3s linear";
+          drone.style.animationFillMode = "forwards";
+          await sleep(2000);
+          element.style.animationPlayState = "running";
+          await sleep(1000);
+          drone.style.animation = "suspension 1s linear infinite";
+          flag = 0;
+        }
+      }
+      // event = keyup or keydown
+      document.addEventListener("keyup", (event) => {
+        console.log(event.code);
+        if (event.code === "Space") {
+          console.log("Space pressed");
+          gameover();
+        } else if (event.code === "ArrowUp") {
+          console.log("up pressed");
+          up();
+        } else if (event.code === "ArrowDown") {
+          console.log("down pressed");
+          down();
+        } else if (event.code === "KeyS") {
+          console.log("stunt");
+          stunt();
+        }
+      });
+    </script>
+  </body>
+</html>

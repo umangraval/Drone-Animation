@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    overflow-y: hidden;
+}
+.container {
+    height: 80vh;
+    width: 70vw;
+    position: relative;
+    margin: 5rem auto;
+}
+.day {
+    height: 80vh;
+    width: 70vw;
+    border: 1px solid black;
+    margin: 5rem auto;
+    background: url('assets/Img_1.png');
+    background-size: cover;
+    position: relative;
+    box-shadow: 1px 2px 60px rgba(0, 0, 0, 5);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: .5s ease;
+}
+.plain {
+    height: 140px;
+    width: 500%;
+    background: url('assets/Img_02.png');
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    background-repeat: repeat-x;
+    animation: moveRight 6s linear infinite;
+    animation-play-state: running;
+}
+
+.car {
+    position: absolute;
+    left: 24%;
+    top: 10%;
+    animation: suspension 1s linear infinite;
+    transition: 1s ease;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  #text{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
+.controls {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+    font-size: 30px;
+    color: white;
+    float: left;
+    padding: 20px;
+    font-family: Arial, Helvetica, serif;
+}
+.keys {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 30px;
+    color: white;
+    float: left;
+    padding: 20px;
+    font-family: Arial, Helvetica, serif;
+}
+@keyframes moveRight{
+    100%{
+        transform: translateX(-2950px);
+    }
+}
+
+
+@keyframes suspension{
+    100%{
+        transform: translateY(-20px) rotate(-10deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+    50%{
+        transform: translateY(20px) rotate(-10deg);
+    }
+    25%{
+        transform: rotate(-5deg);
+    }
+    0%{
+        transform: translateY(-20px) rotate(-10deg);
+    
+    }
+}
+
+@keyframes land {
+    0% {
+        left: 24%; top: 10%;
+    }
+    25% {
+        left: 50%; top: 10%;
+    }
+    50% {
+        left: 50%; top: 40%;
+        transform: rotate(5deg);
+    }
+    75% {
+        left: 50%; top: 60%;
+        transform: rotate(-5deg)
+    }
+    100% {
+        left: 50%; top: 80%;
+        transform: rotate(-6deg);
+    }
+}
+
+@keyframes takeoff {
+    0% {
+        left: 50%; top: 80%;
+        transform: rotate(-10deg);
+    }
+    25% {
+        left: 50%; top: 60%;
+    }
+    50% {
+        left: 50%; top: 40%;
+        transform: rotate(-5deg);
+    }
+    75% {
+        left: 50%; top: 10%;
+    }
+    100% {
+        left: 24%; top: 10%;
+        transform: rotate(-10deg);
+    }
+}
+
+@keyframes stunt {
+    0% {   
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: translate3d(200px, 200px, 10px) rotate(180deg);
+    }
+    50% {   
+        transform: translate3d(400px, 0px, 80px) rotate(720deg);
+    }
+    100% {   
+        transform: translate3d(0px, 0px, 0px) rotate(0deg);
+    }
+}
+
+
