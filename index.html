@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>18BCE0170</title>
+    <title>18BCE0170 Umang Raval</title>
   </head>
   <body >
     <div id="overlay" onclick="off()">
@@ -35,6 +35,7 @@
         />
       </div>
     </div>
+    <center style="margin-top: -70px;"><span class="btn-duration" onclick="day()">Day</span><span class="btn-duration" onclick="night()">Night</span></center>
     <script>
       var flag = 0;
       var game = 1;
@@ -97,6 +98,17 @@
           flag = 0;
         }
       }
+
+      function night() {
+        document.getElementById("day").style.background = "url('assets/Img_night.png')";
+        document.getElementById("day").style.backgroundSize = "cover";
+      }
+
+      function day() {
+        document.getElementById("day").style.backgroundSize = "cover";
+        document.getElementById("day").style.backgroundImage = "url('assets/Img_day.png')";
+      }
+
       // event = keyup or keydown
       document.addEventListener("keyup", (event) => {
         console.log(event.code);
