@@ -35,7 +35,7 @@ body {
     animation-play-state: running;
 }
 
-.car {
+.drone {
     position: absolute;
     left: 24%;
     top: 10%;
